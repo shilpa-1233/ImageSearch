@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F76FBBDC2470616300A75B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBBDB2470616300A75B90 /* AppDelegate.swift */; };
-		F76FBBDE2470616300A75B90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBBDD2470616300A75B90 /* SceneDelegate.swift */; };
 		F76FBBE02470616300A75B90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBBDF2470616300A75B90 /* ViewController.swift */; };
 		F76FBBE32470616300A75B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76FBBE12470616300A75B90 /* Main.storyboard */; };
 		F76FBBE62470616300A75B90 /* ImageSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F76FBBE42470616300A75B90 /* ImageSearch.xcdatamodeld */; };
@@ -16,6 +15,7 @@
 		F76FBBEB2470616800A75B90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F76FBBE92470616800A75B90 /* LaunchScreen.storyboard */; };
 		F76FBBF62470616800A75B90 /* ImageSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBBF52470616800A75B90 /* ImageSearchTests.swift */; };
 		F76FBC012470616800A75B90 /* ImageSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC002470616800A75B90 /* ImageSearchUITests.swift */; };
+		F76FBC0F24706D6000A75B90 /* ImageSearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC0E24706D6000A75B90 /* ImageSearchTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 /* Begin PBXFileReference section */
 		F76FBBD82470616300A75B90 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76FBBDB2470616300A75B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F76FBBDD2470616300A75B90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F76FBBDF2470616300A75B90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F76FBBE22470616300A75B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F76FBBE52470616300A75B90 /* ImageSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImageSearch.xcdatamodel; sourceTree = "<group>"; };
@@ -51,6 +50,7 @@
 		F76FBBFC2470616800A75B90 /* ImageSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F76FBC002470616800A75B90 /* ImageSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchUITests.swift; sourceTree = "<group>"; };
 		F76FBC022470616800A75B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F76FBC0E24706D6000A75B90 /* ImageSearchTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +102,13 @@
 			isa = PBXGroup;
 			children = (
 				F76FBBDB2470616300A75B90 /* AppDelegate.swift */,
-				F76FBBDD2470616300A75B90 /* SceneDelegate.swift */,
 				F76FBBDF2470616300A75B90 /* ViewController.swift */,
 				F76FBBE12470616300A75B90 /* Main.storyboard */,
 				F76FBBE72470616800A75B90 /* Assets.xcassets */,
 				F76FBBE92470616800A75B90 /* LaunchScreen.storyboard */,
 				F76FBBEC2470616800A75B90 /* Info.plist */,
 				F76FBBE42470616300A75B90 /* ImageSearch.xcdatamodeld */,
+				F76FBC0E24706D6000A75B90 /* ImageSearchTableView.swift */,
 			);
 			path = ImageSearch;
 			sourceTree = "<group>";
@@ -263,9 +263,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F76FBBE02470616300A75B90 /* ViewController.swift in Sources */,
+				F76FBC0F24706D6000A75B90 /* ImageSearchTableView.swift in Sources */,
 				F76FBBE62470616300A75B90 /* ImageSearch.xcdatamodeld in Sources */,
 				F76FBBDC2470616300A75B90 /* AppDelegate.swift in Sources */,
-				F76FBBDE2470616300A75B90 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
