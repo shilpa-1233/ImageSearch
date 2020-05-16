@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var recentSearchesCollectionView: UICollectionView!
     @IBOutlet weak var recentSearchesCollectionViewHeight: NSLayoutConstraint!
