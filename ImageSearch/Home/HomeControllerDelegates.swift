@@ -39,7 +39,7 @@ extension HomeViewController : UICollectionViewDataSource {
 
 extension HomeViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        viewModel?.searchById(id: recentSearch?[indexPath.row].id ?? "0", completion: { response , error in
+        viewModel?.search(query: recentSearch?[indexPath.row].name ?? "", completion: { response , error in
             let layout = UICollectionViewFlowLayout.init()
             layout.scrollDirection = .horizontal
             let obj = ImageSearchController.init(collectionViewLayout: layout)
