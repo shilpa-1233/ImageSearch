@@ -19,17 +19,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nl1-UU-Edi">
                         <rect key="frame" x="0.0" y="0.0" width="326" height="56"/>
                         <subviews>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-Fw-iFO" customClass="OCRadioButton" customModule="ImageSearch" customModuleProvider="target">
-                                <rect key="frame" x="24" y="19" width="18" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="nQr-fQ-Gaf"/>
-                                    <constraint firstAttribute="width" constant="18" id="tgX-M1-uGs"/>
-                                </constraints>
-                                <state key="normal" image="magnifyingglass" catalog="system"/>
-                                <state key="disabled" image="emptyCheckbox"/>
-                                <state key="selected" image="checkedBox"/>
-                                <state key="highlighted" image="emptyCheckbox"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tushar Chawla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-VO-xjO">
                                 <rect key="frame" x="66" y="17.5" width="236" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -43,17 +32,24 @@
                                     <constraint firstAttribute="height" constant="2" id="zoV-f3-mmh"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4Eh-LK-dP8">
+                                <rect key="frame" x="15" y="7.5" width="43" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="43" id="KCv-ru-9xg"/>
+                                    <constraint firstAttribute="height" constant="41" id="f6C-6o-rFN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Tjo-M3-f1J" secondAttribute="trailing" constant="15" id="2Ec-Qc-Svt"/>
                             <constraint firstItem="Tjo-M3-f1J" firstAttribute="leading" secondItem="Nl1-UU-Edi" secondAttribute="leading" constant="15" id="3aQ-UN-0IA"/>
-                            <constraint firstItem="Xuw-Fw-iFO" firstAttribute="centerY" secondItem="Nl1-UU-Edi" secondAttribute="centerY" id="8oc-6j-X9R"/>
-                            <constraint firstItem="Htf-VO-xjO" firstAttribute="centerY" secondItem="Xuw-Fw-iFO" secondAttribute="centerY" id="WM2-O7-V5T"/>
+                            <constraint firstItem="4Eh-LK-dP8" firstAttribute="centerY" secondItem="Nl1-UU-Edi" secondAttribute="centerY" id="OW5-jg-xCz"/>
                             <constraint firstAttribute="bottom" secondItem="Tjo-M3-f1J" secondAttribute="bottom" id="cLv-A9-0gw"/>
+                            <constraint firstItem="Htf-VO-xjO" firstAttribute="centerY" secondItem="Nl1-UU-Edi" secondAttribute="centerY" id="hNr-5J-a0a"/>
+                            <constraint firstItem="Htf-VO-xjO" firstAttribute="leading" secondItem="4Eh-LK-dP8" secondAttribute="trailing" constant="8" id="iAT-Id-UdR"/>
                             <constraint firstAttribute="height" constant="56" id="iIl-aM-YpY"/>
-                            <constraint firstItem="Htf-VO-xjO" firstAttribute="leading" secondItem="Xuw-Fw-iFO" secondAttribute="trailing" constant="24" id="r7h-74-zyZ"/>
-                            <constraint firstItem="Xuw-Fw-iFO" firstAttribute="leading" secondItem="Nl1-UU-Edi" secondAttribute="leading" constant="24" id="ugY-Zv-9eM"/>
+                            <constraint firstItem="4Eh-LK-dP8" firstAttribute="leading" secondItem="Nl1-UU-Edi" secondAttribute="leading" constant="15" id="vw9-VV-6iJ"/>
                             <constraint firstAttribute="trailing" secondItem="Htf-VO-xjO" secondAttribute="trailing" constant="24" id="xrt-7s-nlh"/>
                         </constraints>
                     </view>
@@ -68,17 +64,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="btnRadio" destination="Xuw-Fw-iFO" id="qD3-8I-foE"/>
+                <outlet property="imageSmall" destination="4Eh-LK-dP8" id="5y5-kv-mew"/>
                 <outlet property="lblHeading" destination="Htf-VO-xjO" id="EBi-gz-bX5"/>
                 <outlet property="viewSeparator" destination="Tjo-M3-f1J" id="aP9-cB-aAL"/>
                 <outlet property="viewinner" destination="Nl1-UU-Edi" id="40P-H4-IWk"/>
             </connections>
-            <point key="canvasLocation" x="142.02898550724638" y="128.23660714285714"/>
+            <point key="canvasLocation" x="140.57971014492756" y="128.23660714285714"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="checkedBox" width="18" height="18"/>
-        <image name="emptyCheckbox" width="33" height="33"/>
-        <image name="magnifyingglass" catalog="system" width="64" height="56"/>
-    </resources>
 </document>
