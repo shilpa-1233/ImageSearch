@@ -21,5 +21,15 @@ class RecentSearchCollectionViewCell: UICollectionViewCell {
     func customize(text:String) {
         textLabel.text = text
     }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        setNeedsLayout()
+        layoutIfNeeded()
+        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+        var frame = layoutAttributes.frame
+        frame.size.width = ceil(size.width)
+        layoutAttributes.frame = frame
+        return layoutAttributes
+    }
 
 }

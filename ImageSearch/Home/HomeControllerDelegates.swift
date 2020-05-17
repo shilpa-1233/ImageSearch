@@ -12,7 +12,7 @@ import UIKit
 
 extension HomeViewController : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        recentSearchesCollectionViewHeight.constant = 120
+        recentSearchesCollectionViewHeight.constant = 180
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -29,7 +29,7 @@ extension HomeViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RecentSearchCollectionViewCellIdentifier", for: indexPath) as? RecentSearchCollectionViewCell
         cell?.OuterView.clipsToBounds = true
         cell?.OuterView.layer.masksToBounds = true
-        cell?.OuterView.layer.cornerRadius = 20
+        cell?.OuterView.layer.cornerRadius = 4
         cell?.customize(text: recentSearch?[indexPath.row].name ?? "")
         return cell!
     }
@@ -51,7 +51,7 @@ extension HomeViewController : UICollectionViewDelegate {
 
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: 100, height: 100)
+        return CGSize.init(width: 20, height: 25)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -62,7 +62,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout {
         return 8.0
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets.init(top: 8, left: 8, bottom: 8, right: 8)
     }
 }
 
