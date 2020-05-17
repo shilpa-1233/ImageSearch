@@ -22,7 +22,7 @@ extension HomeViewController : UITextFieldDelegate {
 
 extension HomeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recentSearch?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -30,10 +30,17 @@ extension HomeViewController : UICollectionViewDataSource {
         cell?.OuterView.clipsToBounds = true
         cell?.OuterView.layer.masksToBounds = true
         cell?.OuterView.layer.cornerRadius = 20
+        cell?.customize(text: recentSearch?[indexPath.row].name ?? "")
         return cell!
     }
     
     
+}
+
+extension HomeViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        search(text:recentSearch?[indexPath.row].name ?? "")
+    }
 }
 
 extension HomeViewController : UICollectionViewDelegateFlowLayout {
