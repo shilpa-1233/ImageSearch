@@ -31,6 +31,7 @@
 		F76FBC5624715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC5424715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.swift */; };
 		F76FBC5724715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76FBC5524715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.xib */; };
 		F76FBC592471625B00A75B90 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC582471625B00A75B90 /* UIImage+Extension.swift */; };
+		F76FBC5B247170F200A75B90 /* HomeControllerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC5A247170F200A75B90 /* HomeControllerDelegates.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		F76FBC5424715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchFullViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F76FBC5524715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSearchFullViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		F76FBC582471625B00A75B90 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F76FBC5A247170F200A75B90 /* HomeControllerDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerDelegates.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 			children = (
 				F76FBBDF2470616300A75B90 /* HomeViewController.swift */,
 				F76FBBE12470616300A75B90 /* Main.storyboard */,
+				F76FBC5A247170F200A75B90 /* HomeControllerDelegates.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F76FBC1A2470720900A75B90 /* NetworkConstants.swift in Sources */,
+				F76FBC5B247170F200A75B90 /* HomeControllerDelegates.swift in Sources */,
 				F76FBC52247156B100A75B90 /* UIView+Extension.swift in Sources */,
 				F76FBC5624715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.swift in Sources */,
 				F76FBC4C2471130000A75B90 /* ImageSearchTableViewCell.swift in Sources */,

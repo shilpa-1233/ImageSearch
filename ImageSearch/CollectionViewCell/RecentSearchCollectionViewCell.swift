@@ -19,8 +19,6 @@ class RecentSearchCollectionViewCell: UICollectionViewCell {
     }
     
     func customize(text:String) {
-        OuterView.clipsToBounds = true
-        OuterView.layer.cornerRadius = 50
         textLabel.text = text
     }
 

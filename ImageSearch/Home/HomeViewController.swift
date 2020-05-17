@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController,UITextFieldDelegate {
+class HomeViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var recentSearchesCollectionView: UICollectionView!
     @IBOutlet weak var recentSearchesCollectionViewHeight: NSLayoutConstraint!
@@ -19,35 +19,40 @@ class HomeViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         textField.keyboardType = .alphabet
         textField.delegate = self
+        recentSearchesCollectionView.delegate = self
+        recentSearchesCollectionView.dataSource = self
+        recentSearchesCollectionView.register(UINib.init(nibName: "RecentSearchCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "RecentSearchCollectionViewCellIdentifier")
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField){
+        if textField.text?.isEmpty ?? false {
+            for i in view.subviews {
+                if ((i as? BottomSheetCheckBox<Hit>) != nil) {
+                    i.removeFromSuperview()
+                }
+            }
+        }else {
+            viewModel?.search(query: textField.text ?? "") { response,errror in
+                self.view.addBottomSheetCheckbox(model: response?.hits ?? [], didSelectModel: { index in
+                    let layout = UICollectionViewFlowLayout.init()
+                    layout.scrollDirection = .horizontal
+                    let obj = ImageSearchController.init(collectionViewLayout: layout)
+                    obj.imageModel = response
+                    obj.indexSelected = index
+                    self.navigationController?.pushViewController(obj, animated: false)
+                })
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.textField.resignFirstResponder()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         textField.text = ""
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(UIResponder.keyboardDidShowNotification)
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        recentSearchesCollectionViewHeight.constant = 0
-    }
-
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        viewModel?.search(query: textField.text?.appending(string) ?? "") { response,errror in
-            self.view.addBottomSheetCheckbox(model: response?.hits ?? [], didSelectModel: { index in
-                let layout = UICollectionViewFlowLayout.init()
-                layout.scrollDirection = .horizontal
-                let obj = ImageSearchController.init(collectionViewLayout: layout)
-                obj.imageModel = response
-                obj.indexSelected = index
-                self.navigationController?.pushViewController(obj, animated: false)
-            })
-        }
-        
-        return true
-    }
-    
 }
-

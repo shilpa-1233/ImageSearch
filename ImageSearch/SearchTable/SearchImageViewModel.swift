@@ -7,15 +7,9 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
-import RxDataSources
-import SVProgressHUD
 import Alamofire
 
 class SearchImageViewModel {
-//      var dataSource = BehaviorRelay<[TaskListSectionModel]>.init(value: [])
-      var disposeBag: DisposeBag = DisposeBag.init()
     
     let AF = SessionManager.default
     
