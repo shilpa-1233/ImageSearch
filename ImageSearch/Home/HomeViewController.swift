@@ -59,6 +59,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
     func saveInDatabase(model : Hit) {
         let imageEntity = NSEntityDescription.entity(forEntityName: "Image", in: managedContext)!
         let image = NSManagedObject(entity: imageEntity, insertInto: managedContext)

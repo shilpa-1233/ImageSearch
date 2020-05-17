@@ -34,4 +34,24 @@ class SearchImageViewModel {
             }
         })
         }
+    
+    func searchById(id: String, completion result: @escaping (SearchImageModel?, Error?) -> Void) {
+    let parameters: [String:Any] = [
+        "key": NetworkConstants.pixabayApiKey,
+        "id": id,
+        "orientation": "vertical",
+        "safesearch": true,
+        "per_page": 4,
+        "image_type": "photo"
+    ]
+    
+    AF.request(NetworkConstants.baseUrl, method: .get, parameters: parameters).response(completionHandler: { [weak self](response) in
+        if response.response?.statusCode == 200 {
+            self?.imageData = try! JSONDecoder.init().decode(SearchImageModel.self, from: response.data!)
+            result(self?.imageData, response.error)
+        }else {
+            result(nil,response.error)
+        }
+    })
+    }
     }
