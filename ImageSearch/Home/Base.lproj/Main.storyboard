@@ -90,21 +90,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="t6D-zE-XI1">
-                            <size key="itemSize" width="419" height="801"/>
+                            <size key="itemSize" width="413" height="732"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageSearchFullViewCollectionViewCellIdentifier" id="U6y-ko-Jhf" customClass="ImageSearchFullViewCollectionViewCell" customModule="ImageSearch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="47.5" width="419" height="801"/>
+                                <rect key="frame" x="0.0" y="82" width="413" height="732"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ACx-7k-1np">
-                                    <rect key="frame" x="0.0" y="0.0" width="419" height="801"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="413" height="732"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="customSize" width="419" height="801"/>
+                                <size key="customSize" width="413" height="732"/>
                             </collectionViewCell>
                         </cells>
                         <connections>

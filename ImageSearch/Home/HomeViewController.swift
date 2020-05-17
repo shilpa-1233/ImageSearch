@@ -30,6 +30,8 @@ class HomeViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         managedContext = appDelegate?.persistentContainer.viewContext
         fetchFromDatabase()
+        self.setNavigationTitle(to: "Wynk")
+        self.setBackButton()
         
     }
     
@@ -40,23 +42,40 @@ class HomeViewController: UIViewController {
     func search(text : String) {
         if text.isEmpty {
             for i in view.subviews {
-                if ((i as? BottomSheetCheckBox<Hit>) != nil) {
+                if ((i as? ImageSearchTableListView<Hit>) != nil) {
                     i.removeFromSuperview()
                 }
             }
         }else {
             viewModel?.search(query: textField.text ?? "") { response,errror in
-                self.view.addBottomSheetCheckbox(model: response?.hits ?? [], didSelectModel: { index in
-                    self.saveInDatabase(model: (self.viewModel?.imageData?.hits?[index])!)
-                    let layout = UICollectionViewFlowLayout.init()
-                    layout.scrollDirection = .horizontal
-                    let obj = ImageSearchController.init(collectionViewLayout: layout)
-                    obj.imageModel = response
-                    obj.indexSelected = index
-                    self.navigationController?.pushViewController(obj, animated: false)
-                })
+                
+                guard let response = response else {return}
+                
+                if response.hits?.count == 0 {
+                    self.NoDataAlert()
+                }else {
+                    self.view.addImageSearchTableListView(model: response.hits ?? [], textToSearch: self.textField.text ?? "", didSelectModel: { index in
+                        self.saveInDatabase(model: (self.viewModel?.imageData?.hits?[index])!)
+                        let layout = UICollectionViewFlowLayout.init()
+                        layout.scrollDirection = .horizontal
+                        let obj = ImageSearchController.init(collectionViewLayout: layout)
+                        obj.imageModel = response
+                        obj.indexSelected = index
+                        obj.collectionView.scrollToItem(at: IndexPath.init(row: index , section: 0), at: .centeredVertically, animated: true)
+                        self.navigationController?.pushViewController(obj, animated: false)
+                    },endOfPage: {
+                        self.NoDataAlert()
+                    }
+                    )
+                }
             }
         }
+    }
+    
+    func NoDataAlert() {
+        let alert = UIAlertController(title: "Alert", message: "No More Data", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
     
     

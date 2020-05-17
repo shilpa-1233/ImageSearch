@@ -21,7 +21,7 @@ class SearchImageViewModel {
             "q": query,
             "orientation": "vertical",
             "safesearch": true,
-            "per_page": 4,
+            "per_page": 10,
             "image_type": "photo"
         ]
         
@@ -41,7 +41,7 @@ class SearchImageViewModel {
         "id": id,
         "orientation": "vertical",
         "safesearch": true,
-        "per_page": 4,
+        "per_page": 10,
         "image_type": "photo"
     ]
     

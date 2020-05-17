@@ -14,7 +14,7 @@ struct SearchImageModel: Codable {
 }
 
 // MARK: - Hit
-struct Hit: Codable ,BottomSheetTypeProtocol{
+struct Hit: Codable ,ImageProtocol{
     var id: Int?
     var pageURL: String?
     var type, tags: String?

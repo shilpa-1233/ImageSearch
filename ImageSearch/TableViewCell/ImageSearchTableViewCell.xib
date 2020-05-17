@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nl1-UU-Edi">
                         <rect key="frame" x="0.0" y="0.0" width="326" height="56"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-Fw-iFO" customClass="OCRadioButton" customModule="ImageSearch" customModuleProvider="target">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xuw-Fw-iFO" customClass="OCRadioButton" customModule="ImageSearch" customModuleProvider="target">
                                 <rect key="frame" x="24" y="19" width="18" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="nQr-fQ-Gaf"/>

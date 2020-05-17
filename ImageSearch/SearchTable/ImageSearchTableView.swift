@@ -9,21 +9,27 @@
 import Foundation
 import UIKit
 
-protocol BottomSheetTypeProtocol {
+protocol ImageProtocol {
     func requireSeparator() -> Bool
     func setLabelText() -> String
     func idValue() -> Int
 }
 
 
-class BottomSheetCheckBox<T: Codable & BottomSheetTypeProtocol>: UIView,UITableViewDataSource,UITableViewDelegate {
+class ImageSearchTableListView<T: Codable & ImageProtocol>: UIView,UITableViewDataSource,UITableViewDelegate {
     
     var callback:((Int)->Void)!
-    var model : [T]?
+    var model = [Hit]()
+    
+    var endOfPage:(()->Void)!
     
     var indexSelected : T?
     
     let tableView = UITableView.init()
+    
+    var viewModel : SearchImageViewModel? = SearchImageViewModel()
+    
+    var textToSearch : String?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,9 +39,12 @@ class BottomSheetCheckBox<T: Codable & BottomSheetTypeProtocol>: UIView,UITableV
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addBottomSheet(model:[T]) {
+    func addBottomSheet(model:[Hit],textToSearch:String) {
+        
         
         self.model = model
+        self.textToSearch = textToSearch
+        self.searchApi()
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .black
@@ -50,7 +59,7 @@ class BottomSheetCheckBox<T: Codable & BottomSheetTypeProtocol>: UIView,UITableV
         let leadingContainerViewAnchor = tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 18)
         let trailingContainerViewAnchor = tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -18)
         let topConstraint = tableView.topAnchor.constraint(equalTo: self.topAnchor, constant: 150)
-        let height = tableView.heightAnchor.constraint(equalToConstant: self.frame.size.height-346)
+        let height = tableView.heightAnchor.constraint(equalToConstant: self.frame.size.height-500)
         height.priority = UILayoutPriority.init(1)
         
         NSLayoutConstraint.activate([leadingContainerViewAnchor, trailingContainerViewAnchor,topConstraint,height])
@@ -67,12 +76,12 @@ class BottomSheetCheckBox<T: Codable & BottomSheetTypeProtocol>: UIView,UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model?.count ?? 0
+        return model.count 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageSearchTableViewCellIdentifier") as! ImageSearchTableViewCell
-        cell.customize(modelUserData: (model?[indexPath.row])!)
+        cell.customize(modelUserData: (model[indexPath.row]))
         return cell
     }
     
@@ -91,6 +100,28 @@ class BottomSheetCheckBox<T: Codable & BottomSheetTypeProtocol>: UIView,UITableV
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 15.0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = self.tableView.frame.size.height
+        let contentYoffset = self.tableView.contentOffset.y
+        //            let distanceFromBottom = self.reportsTableView.contentSize.height - contentYoffset
+        if contentYoffset + height >= self.tableView.contentSize.height {
+            self.searchApi()
+        }
+    }
+    
+    func searchApi() {
+        viewModel?.search(query: self.textToSearch ?? "", completion: {response,errror in
+            guard let response = response else {return}
+            if response.hits?.count ?? 0 > 0 {
+                let hits = response.hits
+                self.model.append(contentsOf: hits ?? [])
+                self.tableView.reloadData()
+            }else {
+                self.endOfPage()
+            }
+        })
     }
     
 }

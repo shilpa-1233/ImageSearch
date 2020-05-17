@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func addBottomSheetCheckbox<T:Codable & BottomSheetTypeProtocol>(model:[T], didSelectModel: @escaping (Int) -> Void) {
-        let objBottomSheet = BottomSheetCheckBox<T>.init(frame: self.frame)
-        objBottomSheet.addBottomSheet(model: model)
+    func addImageSearchTableListView(model:[Hit], textToSearch:String,didSelectModel: @escaping (Int) -> Void,endOfPage: @escaping () -> Void) {
+        let objBottomSheet = ImageSearchTableListView<Hit>.init(frame: self.frame)
+        objBottomSheet.addBottomSheet(model: model,textToSearch:textToSearch)
         self.addSubview(objBottomSheet)
         objBottomSheet.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         objBottomSheet.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
@@ -20,6 +20,22 @@ extension UIView {
         objBottomSheet.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive  = true
         objBottomSheet.callback = didSelectModel
         objBottomSheet.bringSubviewToFront(self)
+    }
+}
+
+extension UIViewController {
+    func setNavigationTitle(to str: String) {
+        let navTitle = UILabel.init()
+        navTitle.attributedText = NSAttributedString.init(string: str, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16), NSAttributedString.Key.kern: 0.2, NSAttributedString.Key.foregroundColor: UIColor.black])
+        navTitle.sizeToFit()
+        self.navigationItem.titleView = navTitle
+    }
+    
+    func setBackButton() {
+        self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.leftBarButtonItem?.tintColor = .red
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.red
+        self.navigationController?.navigationBar.tintColor = UIColor.red
     }
 }
 

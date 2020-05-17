@@ -10,17 +10,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageSearchFullViewCollectionViewCellIdentifier" id="gTV-IL-0wX" customClass="ImageSearchFullViewCollectionViewCell" customModule="ImageSearch" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="165" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="165" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="YAz-nN-yYx">
-                        <rect key="frame" x="72.5" y="40" width="20" height="20"/>
+                        <rect key="frame" x="15" y="15" width="20" height="20"/>
                     </activityIndicatorView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Kw-WJ-14a">
-                        <rect key="frame" x="0.0" y="0.0" width="165" height="100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     </imageView>
                 </subviews>
             </view>
@@ -34,11 +34,10 @@
                 <constraint firstItem="YAz-nN-yYx" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="xcv-O1-K9R"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="165" height="100"/>
             <connections>
                 <outlet property="image" destination="7Kw-WJ-14a" id="ut9-em-ibp"/>
             </connections>
-            <point key="canvasLocation" x="28.260869565217394" y="122.54464285714285"/>
+            <point key="canvasLocation" x="84" y="106"/>
         </collectionViewCell>
     </objects>
 </document>

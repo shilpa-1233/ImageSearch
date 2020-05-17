@@ -15,9 +15,78 @@ class ImageSearchController: UICollectionViewController {
     
     var imageModel: SearchImageModel?
     var indexSelected: Int?
+    
+    private let previousButton: UIButton = {
+          let button = UIButton(type: .system)
+          button.setTitle("PREV", for: .normal)
+          button.translatesAutoresizingMaskIntoConstraints = false
+          button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+          button.setTitleColor(.gray, for: .normal)
+          button.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
+          return button
+      }()
+      
+      @objc private func handlePrev() {
+          let nextIndex = max(pageControl.currentPage - 1, 0)
+          let indexPath = IndexPath(item: nextIndex, section: 0)
+          pageControl.currentPage = nextIndex
+          collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+      }
+      
+      private let nextButton: UIButton = {
+          let button = UIButton(type: .system)
+          button.setTitle("NEXT", for: .normal)
+          button.translatesAutoresizingMaskIntoConstraints = false
+          button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+          button.setTitleColor(.systemPink, for: .normal)
+          button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+          return button
+      }()
+      
+      @objc private func handleNext() {
+        let nextIndex = min(pageControl.currentPage + 1, (imageModel?.hits?.count ?? 1) - 1)
+          let indexPath = IndexPath(item: nextIndex, section: 0)
+          pageControl.currentPage = nextIndex
+          collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+      }
+      
+      private lazy var pageControl: UIPageControl = {
+          let pc = UIPageControl()
+        pc.frame(forAlignmentRect: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width-100, height: 50))
+          pc.currentPage = 0
+          pc.numberOfPages = imageModel?.hits?.count ?? 0
+          pc.currentPageIndicatorTintColor = .systemPink
+          pc.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+          return pc
+      }()
+      
+      fileprivate func setupBottomControls() {
+          let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
+          bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+          bottomControlsStackView.distribution = .fillEqually
+          
+          view.addSubview(bottomControlsStackView)
+          
+          NSLayoutConstraint.activate([
+              bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+              bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+              bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+              bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+              ])
+      }
+      
+      override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+          
+          let x = targetContentOffset.pointee.x
+          
+          pageControl.currentPage = Int(x / view.frame.width)
+          
+      }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UINib.init(nibName: "ImageSearchFullViewCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSearchFullViewCollectionViewCellIdentifier")
+        setupBottomControls()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,24 +108,6 @@ class ImageSearchController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ImageSearchFullViewCollectionViewCell
         cell?.customize(imageUrl:imageModel?.hits?[indexPath.row].largeImageURL ?? "https://pixabay.com/get/35bbf209e13e39d2_640.jpg" )
         return cell!
-    }
-}
-
-extension ImageSearchController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 24.0
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 16, left: 0, bottom: 0, right: 0)
     }
 }
 

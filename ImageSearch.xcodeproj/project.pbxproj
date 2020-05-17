@@ -32,6 +32,7 @@
 		F76FBC5724715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F76FBC5524715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.xib */; };
 		F76FBC592471625B00A75B90 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC582471625B00A75B90 /* UIImage+Extension.swift */; };
 		F76FBC5B247170F200A75B90 /* HomeControllerDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC5A247170F200A75B90 /* HomeControllerDelegates.swift */; };
+		F76FBC5D247198CF00A75B90 /* ImageSerachDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F76FBC5C247198CF00A75B90 /* ImageSerachDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		F76FBC5524715FBD00A75B90 /* ImageSearchFullViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageSearchFullViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		F76FBC582471625B00A75B90 /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		F76FBC5A247170F200A75B90 /* HomeControllerDelegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerDelegates.swift; sourceTree = "<group>"; };
+		F76FBC5C247198CF00A75B90 /* ImageSerachDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSerachDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				F76FBC102470715F00A75B90 /* ImageSearchController.swift */,
+				F76FBC5C247198CF00A75B90 /* ImageSerachDelegate.swift */,
 			);
 			path = ViewImage;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				F76FBC4C2471130000A75B90 /* ImageSearchTableViewCell.swift in Sources */,
 				F76FBBE02470616300A75B90 /* HomeViewController.swift in Sources */,
 				F76FBC1F2470735C00A75B90 /* SearchImageModel.swift in Sources */,
+				F76FBC5D247198CF00A75B90 /* ImageSerachDelegate.swift in Sources */,
 				F76FBC212470736C00A75B90 /* SearchImageViewModel.swift in Sources */,
 				F76FBC112470715F00A75B90 /* ImageSearchController.swift in Sources */,
 				F76FBC0F24706D6000A75B90 /* ImageSearchTableView.swift in Sources */,

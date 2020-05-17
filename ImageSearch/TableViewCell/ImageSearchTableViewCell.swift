@@ -18,7 +18,7 @@ class ImageSearchTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func customize(modelUserData: BottomSheetTypeProtocol) {
+    func customize(modelUserData: ImageProtocol) {
         self.lblHeading.text = modelUserData.setLabelText()
         viewSeparator.backgroundColor = .lightGray
         lblHeading.textColor = .white
