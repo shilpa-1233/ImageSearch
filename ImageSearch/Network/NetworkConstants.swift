@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 struct NetworkConstants {
-    static let baseUrl = "http://stagingrms.oxfordcaps.com/acquisition/api/v1/"
+    static let baseUrl = "https://pixabay.com/api/"
+    static var pixabayApiKey: String {
+        // TODO: Provide your API key
+        return "16584242-c37ee45bfb04835123d393592"
+    }
 }
 
