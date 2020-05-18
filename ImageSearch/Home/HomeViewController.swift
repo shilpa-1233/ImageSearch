@@ -48,16 +48,18 @@ class HomeViewController: UIViewController {
             }
         }else {
             self.view.addImageSearchTableListView(model: [], textToSearch: self.textField.text ?? "", viewModel:self.viewModel, didSelectModel: { index in
-                self.saveInDatabase(model: (self.viewModel?.imageData.hits?[index])!)
-                let layout = UICollectionViewFlowLayout.init()
-                layout.scrollDirection = .horizontal
-                let obj = ImageSearchController.init(collectionViewLayout: layout)
-                obj.imageModel = self.viewModel?.imageData
-                obj.indexSelected = index
-                obj.collectionView.scrollToItem(at: IndexPath.init(row: index , section: 0), at: .centeredHorizontally, animated: true)
-                self.navigationController?.pushViewController(obj, animated: false)
-            },endOfPage: {
-                self.NoDataAlert()
+                if let index = index {
+                    self.saveInDatabase(model: (self.viewModel?.imageData.hits?[index])!)
+                    let layout = UICollectionViewFlowLayout.init()
+                    layout.scrollDirection = .horizontal
+                    let obj = ImageSearchController.init(collectionViewLayout: layout)
+                    obj.imageModel = self.viewModel?.imageData
+                    obj.indexSelected = index
+                    obj.collectionView.scrollToItem(at: IndexPath.init(row: index , section: 0), at: .centeredHorizontally, animated: true)
+                    self.navigationController?.pushViewController(obj, animated: false)
+                }else {
+                    self.NoDataAlert()
+                }
             }
             )
         }

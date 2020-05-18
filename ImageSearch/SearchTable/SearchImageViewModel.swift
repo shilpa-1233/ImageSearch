@@ -29,10 +29,16 @@ class SearchImageViewModel {
             guard let strongSelf = self else {return}
             if response.response?.statusCode == 200 {
                 let imageDataResponse = try! JSONDecoder.init().decode(SearchImageModel.self, from: response.data!)
-                if let _ = strongSelf.imageData.hits {
-                    strongSelf.imageData.hits?.append(contentsOf: imageDataResponse.hits ?? [])
-                }else {
-                    strongSelf.imageData = imageDataResponse
+                if let hits = imageDataResponse.hits {
+                    if hits.count == 0 {
+                        strongSelf.imageData.hits?.removeAll()
+                    }else {
+                        if let _ = strongSelf.imageData.hits {
+                            strongSelf.imageData.hits?.append(contentsOf: imageDataResponse.hits ?? [])
+                        }else {
+                            strongSelf.imageData = imageDataResponse
+                        }
+                    }
                 }
                 result(self?.imageData, response.error)
             }else {

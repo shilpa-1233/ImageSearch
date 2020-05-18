@@ -18,7 +18,7 @@ protocol ImageProtocol {
 
 class ImageSearchTableListView: UIView,UITableViewDataSource,UITableViewDelegate {
     
-    var callback:((Int)->Void)!
+    var callback:((Int?)->Void)!
     var model = [Hit]()
     
     var endOfPage:(()->Void)!
@@ -121,7 +121,7 @@ class ImageSearchTableListView: UIView,UITableViewDataSource,UITableViewDelegate
                 self.model = hits ?? []
                 self.tableView.reloadData()
             }else {
-                self.endOfPage()
+                self.callback(nil)
             }
         })
     }
