@@ -16,14 +16,14 @@ protocol ImageProtocol {
 }
 
 
-class ImageSearchTableListView<T: Codable & ImageProtocol>: UIView,UITableViewDataSource,UITableViewDelegate {
+class ImageSearchTableListView: UIView,UITableViewDataSource,UITableViewDelegate {
     
     var callback:((Int)->Void)!
     var model = [Hit]()
     
     var endOfPage:(()->Void)!
     
-    var indexSelected : T?
+    var indexSelected : Hit?
     
     let tableView = UITableView.init()
     
@@ -39,12 +39,14 @@ class ImageSearchTableListView<T: Codable & ImageProtocol>: UIView,UITableViewDa
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addBottomSheet(model:[Hit],textToSearch:String) {
+    func addSheet(model:[Hit],textToSearch:String,viewModel:SearchImageViewModel) {
         
         
         self.model = model
         self.textToSearch = textToSearch
-        self.searchApi()
+        self.viewModel = viewModel
+        
+        searchApi()
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .black
@@ -116,7 +118,7 @@ class ImageSearchTableListView<T: Codable & ImageProtocol>: UIView,UITableViewDa
             guard let response = response else {return}
             if response.hits?.count ?? 0 > 0 {
                 let hits = response.hits
-                self.model.append(contentsOf: hits ?? [])
+                self.model = hits ?? []
                 self.tableView.reloadData()
             }else {
                 self.endOfPage()

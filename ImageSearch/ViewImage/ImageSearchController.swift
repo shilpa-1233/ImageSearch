@@ -52,16 +52,16 @@ class ImageSearchController: UICollectionViewController {
       
       private lazy var pageControl: UIPageControl = {
           let pc = UIPageControl()
-        pc.frame(forAlignmentRect: CGRect.init(x: 0, y: 0, width: self.view.frame.size.width-100, height: 50))
           pc.currentPage = 0
           pc.numberOfPages = imageModel?.hits?.count ?? 0
           pc.currentPageIndicatorTintColor = .systemPink
           pc.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+          pc.widthAnchor.constraint(equalToConstant: 80).isActive = true
           return pc
       }()
       
       fileprivate func setupBottomControls() {
-          let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, pageControl, nextButton])
+          let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton, nextButton])
           bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
           bottomControlsStackView.distribution = .fillEqually
           
@@ -71,7 +71,7 @@ class ImageSearchController: UICollectionViewController {
               bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
               bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
               bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-              bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+              bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50),
               ])
       }
       
@@ -87,10 +87,6 @@ class ImageSearchController: UICollectionViewController {
         super.viewDidLoad()
         self.collectionView.register(UINib.init(nibName: "ImageSearchFullViewCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageSearchFullViewCollectionViewCellIdentifier")
         setupBottomControls()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        collectionView.scrollToItem(at: IndexPath.init(row: indexSelected ?? 0, section: 0), at: .centeredVertically, animated: true)
     }
 
     // MARK: UICollectionViewDataSource

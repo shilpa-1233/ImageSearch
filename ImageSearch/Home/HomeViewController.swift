@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     var viewModel : SearchImageViewModel? = SearchImageViewModel()
     let appDelegate : AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     var managedContext : NSManagedObjectContext!
-   
+    
     var recentSearch : [Image]?
     
     override func viewDidLoad() {
@@ -42,33 +42,24 @@ class HomeViewController: UIViewController {
     func search(text : String) {
         if text.isEmpty {
             for i in view.subviews {
-                if ((i as? ImageSearchTableListView<Hit>) != nil) {
+                if ((i as? ImageSearchTableListView) != nil) {
                     i.removeFromSuperview()
                 }
             }
         }else {
-            viewModel?.search(query: textField.text ?? "") { response,errror in
-                
-                guard let response = response else {return}
-                
-                if response.hits?.count == 0 {
-                    self.NoDataAlert()
-                }else {
-                    self.view.addImageSearchTableListView(model: response.hits ?? [], textToSearch: self.textField.text ?? "", didSelectModel: { index in
-                        self.saveInDatabase(model: (self.viewModel?.imageData?.hits?[index])!)
-                        let layout = UICollectionViewFlowLayout.init()
-                        layout.scrollDirection = .horizontal
-                        let obj = ImageSearchController.init(collectionViewLayout: layout)
-                        obj.imageModel = response
-                        obj.indexSelected = index
-                        obj.collectionView.scrollToItem(at: IndexPath.init(row: index , section: 0), at: .centeredVertically, animated: true)
-                        self.navigationController?.pushViewController(obj, animated: false)
-                    },endOfPage: {
-                        self.NoDataAlert()
-                    }
-                    )
-                }
+            self.view.addImageSearchTableListView(model: [], textToSearch: self.textField.text ?? "", viewModel:self.viewModel, didSelectModel: { index in
+                self.saveInDatabase(model: (self.viewModel?.imageData.hits?[index])!)
+                let layout = UICollectionViewFlowLayout.init()
+                layout.scrollDirection = .horizontal
+                let obj = ImageSearchController.init(collectionViewLayout: layout)
+                obj.imageModel = self.viewModel?.imageData
+                obj.indexSelected = index
+                obj.collectionView.scrollToItem(at: IndexPath.init(row: index , section: 0), at: .centeredHorizontally, animated: true)
+                self.navigationController?.pushViewController(obj, animated: false)
+            },endOfPage: {
+                self.NoDataAlert()
             }
+            )
         }
     }
     
@@ -88,19 +79,19 @@ class HomeViewController: UIViewController {
         let date = Date()
         image.setValue(date, forKey: "date")
         do {
-          try managedContext.save()
+            try managedContext.save()
         } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
     func fetchFromDatabase()  {
-       let fetchRequest = NSFetchRequest<Image>(entityName: "Image")
+        let fetchRequest = NSFetchRequest<Image>(entityName: "Image")
         let sort = NSSortDescriptor(key: #keyPath(Image.date), ascending: false)
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.fetchLimit = 10
         do {
-           recentSearch = try managedContext.fetch(fetchRequest)
+            recentSearch = try managedContext.fetch(fetchRequest)
         } catch {
             print("Cannot fetch Expenses")
         }

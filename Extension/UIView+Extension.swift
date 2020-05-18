@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func addImageSearchTableListView(model:[Hit], textToSearch:String,didSelectModel: @escaping (Int) -> Void,endOfPage: @escaping () -> Void) {
-        let objBottomSheet = ImageSearchTableListView<Hit>.init(frame: self.frame)
-        objBottomSheet.addBottomSheet(model: model,textToSearch:textToSearch)
+    func addImageSearchTableListView(model:[Hit], textToSearch:String,viewModel:SearchImageViewModel!,didSelectModel: @escaping (Int) -> Void,endOfPage: @escaping () -> Void) {
+        let objBottomSheet = ImageSearchTableListView.init(frame: self.frame)
+        objBottomSheet.addSheet(model: model,textToSearch:textToSearch, viewModel: viewModel)
         self.addSubview(objBottomSheet)
         objBottomSheet.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         objBottomSheet.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true

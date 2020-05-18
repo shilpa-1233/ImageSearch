@@ -13,7 +13,7 @@ class SearchImageViewModel {
     
     let AF = SessionManager.default
     
-    var imageData : SearchImageModel?
+    var imageData = SearchImageModel.init()
 
     func search(query: String, completion result: @escaping (SearchImageModel?, Error?) -> Void) {
         let parameters: [String:Any] = [
@@ -26,8 +26,14 @@ class SearchImageViewModel {
         ]
         
         AF.request(NetworkConstants.baseUrl, method: .get, parameters: parameters).response(completionHandler: { [weak self](response) in
+            guard let strongSelf = self else {return}
             if response.response?.statusCode == 200 {
-                self?.imageData = try! JSONDecoder.init().decode(SearchImageModel.self, from: response.data!)
+                let imageDataResponse = try! JSONDecoder.init().decode(SearchImageModel.self, from: response.data!)
+                if let _ = strongSelf.imageData.hits {
+                    strongSelf.imageData.hits?.append(contentsOf: imageDataResponse.hits ?? [])
+                }else {
+                    strongSelf.imageData = imageDataResponse
+                }
                 result(self?.imageData, response.error)
             }else {
                 result(nil,response.error)
